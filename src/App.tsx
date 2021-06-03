@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button, Container } from '@material-ui/core';
+import React, { useState } from 'react';
+import NavBarApp from './components/NavBarApp';
+import SiderMenu from './components/SiderMenu';
+
 
 function App() {
+
+  const [openMenu,setOpenMenu] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <NavBarApp openMenu={()=>{setOpenMenu(true)}}/>
+      <SiderMenu open={openMenu} setOpen={(val:boolean)=>setOpenMenu(val)}/>
+    </Container>
   );
 }
 
