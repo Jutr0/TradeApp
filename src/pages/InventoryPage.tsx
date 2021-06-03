@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import HeroCard from "../components/HeroCard";
+import HeroCard from "../components/HeroCard/HeroCard";
 
 const InventoryPage = () => {
   return (
