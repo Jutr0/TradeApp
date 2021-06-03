@@ -6,13 +6,12 @@ import { List, ListItem, ListItemIcon, Modal } from "@material-ui/core";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer/SwipeableDrawer";
 import SiderMenuListItem from "./SiderMenuListItem";
 
-
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import GavelOutlinedIcon from "@material-ui/icons/GavelOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import MapOutlinedIcon from "@material-ui/icons/MapOutlined";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from "@material-ui/icons/Settings";
 
 const useStyles = makeStyles({
   paper: {
@@ -31,7 +30,7 @@ const SiderMenu = (props: IProps) => {
     { text: "Journey", icon: <MapOutlinedIcon /> },
     { text: "Shop", icon: <ShoppingCartOutlinedIcon /> },
     { text: "Trade", icon: <GavelOutlinedIcon /> },
-    { text: "Settings", icon:<SettingsIcon/>}
+    { text: "Settings", icon: <SettingsIcon /> },
   ];
   return (
     <SwipeableDrawer
@@ -47,11 +46,13 @@ const SiderMenu = (props: IProps) => {
         {menuOpts.map(({ text, icon }, index) => {
           return (
             <SiderMenuListItem
+              key={index}
               text={text}
               index={index}
               selectedIndex={selectedIndex}
               setSelectedIndex={(num: number) => setSelectedIndex(num)}
               icon={icon}
+              closeMenu={() => setOpen(false)}
             />
           );
         })}
