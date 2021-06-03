@@ -1,6 +1,7 @@
-import { Card, CardContent, CardMedia, Grid, makeStyles } from "@material-ui/core";
+import { Card, CardContent, CardMedia, Collapse, Grid, makeStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import React, { useState } from "react";
+import { Ithumbnail } from "../../utils/customTypes";
 import HeroStatsList from "./HeroSatsList";
 
 const useStyles = makeStyles({
@@ -14,10 +15,12 @@ const useStyles = makeStyles({
   },
 });
 
-const HeroCard = () => {
+const HeroCard = (props:IProps) => {
+
+  const {id,name,thumbnail} = props;
 
     const stats={strength:20,ability:23,swiftness:39,health:54}
-
+  const [statsCollapsed, setStatsCollapsed] = useState(false)
   const classes = useStyles();
   const [raised, setRaised] = useState(false);
 
@@ -25,7 +28,7 @@ const HeroCard = () => {
     <Grid
       style={{ justifyItems: "center" }}
       item
-      xs={6}
+      xs={10}
       sm={4}
       md={3}
       lg={2}
@@ -33,8 +36,10 @@ const HeroCard = () => {
     >
       <Card
         raised={raised}
+        style={{cursor:"pointer"}}
         onMouseEnter={() => setRaised(true)}
-        onMouseLeave={() => setRaised(false)}
+        onMouseLeave={() => {setRaised(false);/*setStatsCollapsed(false)*/}}
+        onClick={()=>setStatsCollapsed(!statsCollapsed)}
       >
         <Typography
           className={classes.heading}
@@ -42,15 +47,17 @@ const HeroCard = () => {
           variant="h5"
           component="div"
         >
-          Iron Man
+          {name}
         </Typography>
         <CardMedia
           className={classes.media}
-          image="http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55.jpg"
+          image={`${thumbnail.path}.${thumbnail.extension}`}
         />
-        <CardContent>
+        <CardContent >
             <Typography variant="subtitle2" >Stats</Typography>
+            <Collapse style={id<0?{position:"absolute" ,background:"white", boxShadow:"0 5px 5px 0 #555"}:{}} in={statsCollapsed}>
             <HeroStatsList stats={stats}/>
+            </Collapse>
         </CardContent>
       </Card>
     </Grid>
@@ -58,3 +65,10 @@ const HeroCard = () => {
 };
 
 export default HeroCard;
+
+type IProps = {
+  id:number,
+  name:string,
+  thumbnail:Ithumbnail,
+
+}
