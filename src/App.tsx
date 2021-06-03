@@ -1,7 +1,7 @@
 import { Box, Container } from '@material-ui/core';
 import  React, { useState } from 'react';
-import NavBarApp from './components/NavBarApp';
-import SiderMenu from './components/SiderMenu';
+import NavBarApp from './components/NavBarApp/NavBarApp';
+import SiderMenu from './components/Sider/SiderMenu';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import JourneyPage from './pages/JourneyPage';
 import TradePage from './pages/TradePage';
