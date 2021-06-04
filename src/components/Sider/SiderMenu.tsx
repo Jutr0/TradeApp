@@ -41,7 +41,6 @@ const SiderMenu = (props: IProps) => {
       ModalProps={{ onBackdropClick: () => setOpen(false) }}
       swipeAreaWidth={50}
       hysteresis={0.2}
-      
       disableBackdropTransition
     >
       <List>

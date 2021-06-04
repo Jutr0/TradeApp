@@ -1,4 +1,11 @@
-import { Card, CardContent, CardMedia, Collapse, Grid, makeStyles } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Collapse,
+  Grid,
+  makeStyles,
+} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import React, { useState } from "react";
 import { Ithumbnail } from "../../utils/customTypes";
@@ -11,16 +18,15 @@ const useStyles = makeStyles({
   heading: {
     width: "100%",
     textAlign: "center",
-    padding:"10px 0"
+    padding: "10px 0",
   },
 });
 
-const HeroCard = (props:IProps) => {
+const HeroCard = (props: IProps) => {
+  const { id, name, thumbnail } = props;
 
-  const {id,name,thumbnail} = props;
-
-    const stats={strength:20,ability:23,swiftness:39,health:54}
-  const [statsCollapsed, setStatsCollapsed] = useState(false)
+  const stats = { strength: 20, ability: 23, swiftness: 39, health: 54 };
+  const [statsCollapsed, setStatsCollapsed] = useState(false);
   const classes = useStyles();
   const [raised, setRaised] = useState(false);
 
@@ -36,14 +42,16 @@ const HeroCard = (props:IProps) => {
     >
       <Card
         raised={raised}
-        style={{cursor:"pointer"}}
+        style={{ cursor: "pointer" }}
         onMouseEnter={() => setRaised(true)}
-        onMouseLeave={() => {setRaised(false);/*setStatsCollapsed(false)*/}}
-        onClick={()=>setStatsCollapsed(!statsCollapsed)}
+        onMouseLeave={() => {
+          setRaised(false); /*setStatsCollapsed(false)*/
+        }}
+        onClick={() => setStatsCollapsed(!statsCollapsed)}
       >
         <Typography
           className={classes.heading}
-          
+          noWrap
           variant="h5"
           component="div"
         >
@@ -53,11 +61,24 @@ const HeroCard = (props:IProps) => {
           className={classes.media}
           image={`${thumbnail.path}.${thumbnail.extension}`}
         />
-        <CardContent >
-            <Typography variant="subtitle2" >Stats</Typography>
-            <Collapse style={id<0?{position:"absolute" ,background:"white", boxShadow:"0 5px 5px 0 #555"}:{}} in={statsCollapsed}>
-            <HeroStatsList stats={stats}/>
-            </Collapse>
+        <CardContent>
+          <Typography variant="subtitle2">Stats</Typography>
+
+          {/* Different style of collapsing stats but Worse in my opinion */}
+          <Collapse
+            style={
+              id < 0
+                ? {
+                    position: "absolute",
+                    background: "white",
+                    boxShadow: "0 5px 5px 0 #555",
+                  }
+                : {}
+            }
+            in={statsCollapsed}
+          >
+            <HeroStatsList stats={stats} />
+          </Collapse>
         </CardContent>
       </Card>
     </Grid>
@@ -67,8 +88,7 @@ const HeroCard = (props:IProps) => {
 export default HeroCard;
 
 type IProps = {
-  id:number,
-  name:string,
-  thumbnail:Ithumbnail,
-
-}
+  id: number;
+  name: string;
+  thumbnail: Ithumbnail;
+};

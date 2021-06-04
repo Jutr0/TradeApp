@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import React, { useEffect, useRef, useState,useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { withRouter } from "react-router-dom";
 import HeroCard from "../components/HeroCard/HeroCard";
 import { IApiDataResponse, ICharacterData } from "../utils/customTypes";
@@ -11,11 +11,10 @@ const InventoryPage = () => {
   const apiResponse = useRef<IApiDataResponse>();
 
   useEffect(() => {
-    callAPi("characters", { limit: 100 })
+    callAPi("characters", { limit: 20 })
       .then((res) => (apiResponse.current = res?.data))
       .then((res) => setCharacters(res?.results));
   }, []);
-  console.log("hello i am rendering again")
   return (
     <Box>
       <Typography variant="h2">InventoryPage</Typography>

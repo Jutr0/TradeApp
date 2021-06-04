@@ -9,7 +9,7 @@ const defaultParams: ISearchParams = {
 
 const baseURL = "http://gateway.marvel.com/v1/public/";
 
-//calls MarvelApi
+//calls MarvelApi and returns data
 export const callAPi = async (url?: string, params?: ISearchParams) => {
   const apiParams = { ...defaultParams, ...(params || {}) };
   const apiResponse = await axios

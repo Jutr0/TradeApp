@@ -11,6 +11,7 @@ const NavBarApp = (props: IProps) => {
           props.openMenu();
         }}
         startIcon={<MenuIcon />}
+        style={{ height: 50 }}
       />
     </AppBar>
   );
