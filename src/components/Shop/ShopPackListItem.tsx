@@ -1,11 +1,15 @@
-import { Button, CardActions, CardMedia, Divider, Grid, ListItem, Paper } from "@material-ui/core";
+import { Button, CardActions, CardMedia, Divider, Grid, GridList, GridListTile, ListItem, Paper } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
-import React from "react";
+import React, { useState } from "react";
+import { IImgModal } from "../../utils/customTypes";
+
+
 
 const ShopPackListItem = (props:IProps) => {
 
-    const {pack, mainCard, middleCard, lastCard} = props;
+
+    const {pack, mainCard, middleCard, lastCard, setOpenModal} = props;
 
     return(
         <>        
@@ -13,31 +17,40 @@ const ShopPackListItem = (props:IProps) => {
         <Divider/>
         <br/>
         <ListItem >
-            <Grid container  spacing={1} xs={12} alignItems="center">
-                <Grid item xs={4} style={{borderRight:"1px solid #dddddd90"}}>
+            <GridList cellHeight="auto" cols={9} >
+                <GridListTile cols={3} rows={2} style={{borderRight:"1px solid #dddddd90"}}>
                     <Card elevation={0}>
                         <CardMedia component="img" image={pack}/>
                     <CardActions disableSpacing style={{display:"flex", justifyContent:"center"}}>
                         <Button color="secondary" variant="contained" size="large" >Buy 25$</Button>
                     </CardActions>
                     </Card>
-                </Grid>
-                <Grid item xs={3} >
-                <Card elevation={0}>
+                </GridListTile>
+                <GridListTile cols={2} rows={2} >
+                <Card elevation={0} onClick={()=>{setOpenModal(true,mainCard)}} >
                         <CardMedia component="img" image={mainCard}/>
                     </Card>
-                </Grid>
-                <Grid item xs={2}>
-                <Card elevation={0}>
+                <Card elevation={0} onClick={()=>{setOpenModal(true,middleCard)}} >
                         <CardMedia component="img"  image={middleCard}/>
                     </Card>
-                </Grid>
-                <Grid item xs={2}>
-                <Card elevation={0}>
+                </GridListTile>
+                <GridListTile cols={2} rows={2}>
+                <Card elevation={0} onClick={()=>{setOpenModal(true,lastCard)}} >
                         <CardMedia component="img" image={lastCard}/>
                     </Card>
-                </Grid>
-            </Grid>
+                <Card elevation={0} onClick={()=>{setOpenModal(true,mainCard)}} >
+                        <CardMedia component="img" image={mainCard}/>
+                    </Card>
+                </GridListTile>
+                <GridListTile cols={2} rows={2}>
+                <Card elevation={0} onClick={()=>{setOpenModal(true,middleCard)}} >
+                        <CardMedia component="img"  image={middleCard}/>
+                    </Card>
+                <Card elevation={0} onClick={()=>{setOpenModal(true,lastCard)}} >
+                        <CardMedia component="img" image={lastCard}/>
+                    </Card>
+                </GridListTile>
+            </GridList>
             
         </ListItem>
 
@@ -51,5 +64,6 @@ type IProps = {
     pack:string,
     mainCard:string,
     middleCard:string,
-    lastCard:string
+    lastCard:string,
+    setOpenModal:(open:boolean,image:string)=>void
 }
