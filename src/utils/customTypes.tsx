@@ -55,8 +55,7 @@ export type IAdditionalData = {
   resourceURI: string;
 };
 
-
 export type IImgModal = {
-  image:string,
-  open:boolean
-}
+  image: string;
+  open: boolean;
+};

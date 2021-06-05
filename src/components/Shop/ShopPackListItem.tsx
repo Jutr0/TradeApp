@@ -21,14 +21,13 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "stretch",
   },
-  tileCards:{
+  tileCards: {
     display: "flex",
-    alignItems:"center",
-    flexDirection:"column",
-    justifyContent:"space-evenly"
-
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
   },
-  
+
   cardRoot: {
     display: "flex",
     flexDirection: "column",

@@ -4,14 +4,14 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { withRouter } from "react-router-dom";
 import HeroCard from "../components/HeroCard/HeroCard";
 import { IApiDataResponse, ICharacterData } from "../utils/customTypes";
-import { callAPi } from "../utils/utils";
+import API from "../utils/API";
 
 const InventoryPage = () => {
   const [characters, setCharacters] = useState<ICharacterData[]>();
   const apiResponse = useRef<IApiDataResponse>();
 
   useEffect(() => {
-    callAPi("characters", { limit: 20 })
+    API.call("characters", { limit: 20 })
       .then((res) => (apiResponse.current = res?.data))
       .then((res) => setCharacters(res?.results));
   }, []);
