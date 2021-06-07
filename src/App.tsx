@@ -7,6 +7,8 @@ import InventoryPage from './pages/InventoryPage';
 import SettingsPage from './pages/SettingsPage';
 import ShopPage from './pages/ShopPage';
 import NavSider from './components/NavSider';
+import React from 'react';
+import FillForm from './pages/FillForm';
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
       <NavSider/>
       <Box style={{marginBottom:50}}/>
         <Switch>
+          <Route path="/fillform/:page"><FillForm /></Route>
           <Route path="/inventory"><InventoryPage/></Route>
           <Route path="/journey"><JourneyPage/></Route>
           <Route path="/settings"><SettingsPage/></Route>

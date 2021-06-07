@@ -1,7 +1,9 @@
 import axios from "axios";
+import { ICharacterInfo } from "../components/FillForm/CharacterForm";
 import { IApiResponse, ISearchParams } from "./customTypes";
 
 export default class API {
+  //sets base parameters for api call
   private static defaultParams: ISearchParams = {
     ts: 1,
     apikey: "0496dd1c25a6148054d36d77a65cfe14",
@@ -14,6 +16,7 @@ export default class API {
     this.defaultParams = params;
   }
 
+  //sets base URL for api call
   private static baseURL: string = "http://gateway.marvel.com/v1/public/";
   static get getBaseURL() {
     return this.baseURL;
@@ -35,4 +38,9 @@ export default class API {
 
     return apiResponse?.data;
   };
+
+  static addCharacter = async(character:ICharacterInfo) =>{
+    await axios.post('http://127.0.0.1:3001/api/characters',character)
+      .catch(e=>console.error(e))
+  }
 }
