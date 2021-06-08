@@ -6,6 +6,6 @@ const router = express.Router();
 /* GET all characters*/
 router.get("/", characterController.getAllCharacters);
 router.post("/", characterController.addCharacter);
-router.get("/:id",characterController.getCharacter);
+router.get("/:id", characterController.getCharacter);
 
 export default router;
