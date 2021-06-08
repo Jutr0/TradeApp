@@ -7,5 +7,6 @@ const router = express_1.default.Router();
 /* GET all characters*/
 router.get("/", characterController.getAllCharacters);
 router.post("/", characterController.addCharacter);
+router.get("/:id", characterController.getCharacter);
 exports.default = router;
 //# sourceMappingURL=characters.js.map
