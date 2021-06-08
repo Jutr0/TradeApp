@@ -40,7 +40,15 @@ export default class API {
   };
 
   static addCharacter = async(character:ICharacterInfo) =>{
-    await axios.post('http://127.0.0.1:3001/api/characters',character)
+    await axios.post('http://localhost:3001/api/characters',character)
       .catch(e=>console.error(e))
+  }
+  static getCharacter = async (id:number)=>{
+    const character:ICharacterInfo | undefined= await axios.get('http://localhost:3001/api/characters/'+id)
+      .then((res:{data:ICharacterInfo})=>res.data)
+      .catch(e=>{console.error(e); return undefined})
+
+    return character;
+
   }
 }
