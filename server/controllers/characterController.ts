@@ -7,6 +7,8 @@ export const getAllCharacters = (
   next: NextFunction
 ) => {
   let limit = Number.parseInt(req.query.limit as string) || 20;
+  limit = limit>100?100:(limit<1?1:limit);
+
   let offset = Number.parseInt(req.query.offset as string) || 0;
   let orderBy = req.query.orderBy as string || "name";
 

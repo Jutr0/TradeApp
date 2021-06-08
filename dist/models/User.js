@@ -10,8 +10,12 @@ const UserSchema = new mongoose_1.Schema({
     avatar: {
         type: String,
         default: 'https://icons.iconarchive.com/icons/hopstarter/superhero-avatar/256/Avengers-Iron-Man-icon.png',
+    },
+    cards: {
+        type: [mongoose_1.default.SchemaTypes.ObjectId],
+        ref: 'characters'
     }
-});
+}, { timestamps: true, skipVersioning: { dontVersionMe: true } });
 const User = mongoose_1.default.model("User", UserSchema);
 exports.default = User;
 //# sourceMappingURL=User.js.map

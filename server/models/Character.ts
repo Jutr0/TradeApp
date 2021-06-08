@@ -40,7 +40,7 @@ const CharacterShema: Schema = new Schema({
     resistance: { type: Number, required: true },
   },
   race: { type: String },
-});
+},{timestamps:true});
 
 const Character = mongoose.model<CharacterDocument>(
   "Character",

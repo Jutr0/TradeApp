@@ -5,6 +5,7 @@ const tslib_1 = require("tslib");
 const models_1 = require("../models");
 exports.getAllCharacters = (req, res, next) => {
     let limit = Number.parseInt(req.query.limit) || 20;
+    limit = limit > 100 ? 100 : (limit < 1 ? 1 : limit);
     let offset = Number.parseInt(req.query.offset) || 0;
     let orderBy = req.query.orderBy || "name";
     models_1.Character.find()

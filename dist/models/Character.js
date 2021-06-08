@@ -26,7 +26,7 @@ const CharacterShema = new mongoose_1.Schema({
         resistance: { type: Number, required: true },
     },
     race: { type: String },
-});
+}, { timestamps: true });
 const Character = mongoose_1.default.model("Character", CharacterShema);
 exports.default = Character;
 //# sourceMappingURL=Character.js.map
