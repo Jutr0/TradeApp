@@ -30,3 +30,22 @@ try{
   res.send(e)
 }
 };
+
+export const isUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  let isUser:boolean;
+  if(req.query.email){
+  const {name,email} = req.query 
+  const query ={ $or: [ {name:name as string},{email:email as string} ] }
+  isUser = await User.exists(query)
+  }
+  else{
+    const {name,password} = req.query;
+    const query = {$and:[{name:name as string},{password:password as string}]}
+    isUser = await User.exists(query)
+  }
+  res.send({isUser})
+}
