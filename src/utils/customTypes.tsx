@@ -62,7 +62,8 @@ export type IImgModal = {
 
 export type IUser = {
   name: string;
-  avatar: string;
+  avatar?: string;
   email: string;
-  _id: string;
+  id?: string;
+  password?: string;
 };

@@ -15,6 +15,7 @@ import {
 import { Button, Typography } from "@material-ui/core";
 import { LensTwoTone } from "@material-ui/icons";
 import React, { useContext, useRef, useState } from "react";
+import API from "../../../utils/API";
 import { UserContext } from "../../../utils/UserContext";
 import { validateEmail, validatePassword } from "../../../utils/utils";
 import { IAuthenticationDialog } from "./Authentication";
@@ -54,6 +55,7 @@ const RegisterForm = (props: IRegister) => {
   const classes = useStyles();
 
   const { setDialog, dialog } = props;
+  const { setUser } = useContext(UserContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -70,6 +72,7 @@ const RegisterForm = (props: IRegister) => {
   const [emailHelperText, setEmailHelperText] = useState("");
 
   const handleRegister = () => {
+    if (usernameHelperText) setUsernameHelperText("");
     let register = true;
     if (!validateEmail(email)) {
       setEmailHelperText("Incorrect email");
@@ -90,6 +93,17 @@ const RegisterForm = (props: IRegister) => {
       register = false;
     } else {
       setRepPasswordHelperText("");
+    }
+    if (register) {
+      API.isUser(username, email).then((res) => {
+        if (res) {
+          setUsernameHelperText("This username or email is already in use");
+        } else if (res !== undefined) {
+          API.addUser({ name: username, email, password }).then((res) =>
+            setUser(res)
+          );
+        }
+      });
     }
   };
 
@@ -188,7 +202,7 @@ const RegisterForm = (props: IRegister) => {
       >
         <Button
           onClick={() => {
-            setDialog({ content:<></>, open: false });
+            setDialog({ content: <></>, open: false });
           }}
           size="large"
           color="secondary"
