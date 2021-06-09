@@ -24,7 +24,7 @@ export const addUser = async (
 try{
   const user = await User.findOneAndUpdate(query, update, options).lean().exec();
   
-  res.send({name:"Added",user});
+  res.send({name:user.name,email:user.email,avatar:user.avatar,id:user._id});
 }catch(e){
   console.error(e)
   res.send(e)
@@ -48,4 +48,16 @@ export const isUser = async (
     isUser = await User.exists(query)
   }
   res.send({isUser})
+}
+
+//TODO it's not working properly
+export const findUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const name = req.query.name as string;
+  const user = await User.findOne({name:name}).lean().exec()
+  
+  return user
 }

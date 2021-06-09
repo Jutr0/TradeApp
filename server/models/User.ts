@@ -4,6 +4,10 @@ export type UserDocument = Document & {
   name: string;
   avatar: string;
   cards: [Schema.Types.ObjectId];
+  email:string,
+  password?:string,
+  createdAt:Date,
+  updatedAt:Date
 };
 
 const UserSchema: Schema = new Schema(
