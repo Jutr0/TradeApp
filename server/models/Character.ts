@@ -16,31 +16,34 @@ export interface CharacterDocument extends Document {
   race?: string;
 }
 
-const CharacterShema: Schema = new Schema({
-  name: {
-    type: String,
-    required: true,
+const CharacterShema: Schema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    characterId: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+    thumbnail: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+    },
+    stats: {
+      strength: { type: Number, required: true },
+      agility: { type: Number, required: true },
+      magic: { type: Number, required: true },
+      resistance: { type: Number, required: true },
+    },
+    race: { type: String },
   },
-  characterId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
-  thumbnail: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
-  stats: {
-    strength: { type: Number, required: true },
-    agility: { type: Number, required: true },
-    magic: { type: Number, required: true },
-    resistance: { type: Number, required: true },
-  },
-  race: { type: String },
-},{timestamps:true});
+  { timestamps: true }
+);
 
 const Character = mongoose.model<CharacterDocument>(
   "Character",
