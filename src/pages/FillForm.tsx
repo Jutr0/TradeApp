@@ -11,10 +11,13 @@ const FillForm = (props: IProps) => {
   const [characters, setCharacters] = useState<ICharacterData[]>();
   const apiResponse = useRef<IApiDataResponse>();
   const history = useHistory();
-  const [loading,setLoading] = useState(true);
-  const [dialog,setDialog] = useState<IDialogProps>({name:"test",thumbnail:"test",id:120,open:false});
-
-
+  const [loading, setLoading] = useState(true);
+  const [dialog, setDialog] = useState<IDialogProps>({
+    name: "test",
+    thumbnail: "test",
+    id: 120,
+    open: false,
+  });
 
   const { page: pageStr } = props.match.params;
   const page = Number.parseInt(pageStr);
@@ -22,10 +25,13 @@ const FillForm = (props: IProps) => {
   useEffect(() => {
     API.call("characters", { offset: 20 * page || 0 })
       .then((res) => {
-        setLoading(true)
+        setLoading(true);
         return (apiResponse.current = res?.data);
       })
-      .then((res) => {setLoading(false);setCharacters(res?.results)})
+      .then((res) => {
+        setLoading(false);
+        setCharacters(res?.results);
+      });
   }, [page]);
 
   const handlePageChange = (page: number) => {
@@ -76,11 +82,11 @@ const FillForm = (props: IProps) => {
         <Divider />
 
         <List component="div">
-          {characters!==undefined && !loading ? (
+          {characters !== undefined && !loading ? (
             characters.map(({ id, thumbnail, name }) => {
               return (
                 <HeroFillFormListItem
-                key={id}
+                  key={id}
                   dialog={dialog}
                   setDialog={setDialog}
                   id={id}

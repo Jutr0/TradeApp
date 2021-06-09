@@ -7,7 +7,7 @@ import {
   Snackbar,
   Typography,
 } from "@material-ui/core";
-import Alert from '@material-ui/lab/Alert';
+import Alert from "@material-ui/lab/Alert";
 
 import { Card, CardContent, Dialog, Slide, TextField } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -25,61 +25,61 @@ const CharacterForm = (props: IProps) => {
   const [magic, setMagic] = useState<number | null>(null);
   const [resistance, setResistance] = useState<number | null>(null);
 
-  const [agilityHelperText,setAgilityHelperText] = useState<string>("")
-  const [strengthHelperText,setStrengthHelperText] = useState<string>("")
-  const [magicHelperText,setMagicHelperText] = useState<string>("")
-  const [resistanceHelperText,setResistanceHelperText] = useState<string>("")
+  const [agilityHelperText, setAgilityHelperText] = useState<string>("");
+  const [strengthHelperText, setStrengthHelperText] = useState<string>("");
+  const [magicHelperText, setMagicHelperText] = useState<string>("");
+  const [resistanceHelperText, setResistanceHelperText] = useState<string>("");
 
-  const [openSnackBar,setOpenSnackBar] = useState<boolean>(false);
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
 
-    useEffect(()=>{
-        API.getCharacter(id).then(res=>{
-          console.log(res)
-          setAgility(res?.stats?.agility || 0);
-          setStrength(res?.stats?.strength || 0);
-          setMagic(res?.stats?.magic || 0);
-          setResistance(res?.stats?.resistance || 0);
-        }
-        ).catch(e=>console.error(e))
-    },[id])
+  useEffect(() => {
+    API.getCharacter(id)
+      .then((res) => {
+        console.log(res);
+        setAgility(res?.stats?.agility || 0);
+        setStrength(res?.stats?.strength || 0);
+        setMagic(res?.stats?.magic || 0);
+        setResistance(res?.stats?.resistance || 0);
+      })
+      .catch((e) => console.error(e));
+  }, [id]);
 
-    const handleCloseSnackBar = ()=>{
-      setOpenSnackBar(false)
+  const handleCloseSnackBar = () => {
+    setOpenSnackBar(false);
+  };
+
+  const validateStats = () => {
+    if (magic && agility && strength && resistance && id) {
+      const a = agility >= 100 || agility < 0;
+      const m = magic >= 100 || magic < 0;
+      const r = resistance >= 100 || resistance < 0;
+      const s = strength >= 100 || strength < 0;
+      if (a) {
+        setAgilityHelperText("Number must be between 0 and 100");
+      } else {
+        setAgilityHelperText("");
+      }
+      if (m) {
+        setMagicHelperText("Number must be between 0 and 100");
+      } else {
+        setMagicHelperText("");
+      }
+      if (r) {
+        setResistanceHelperText("Number must be between 0 and 100");
+      } else {
+        setResistanceHelperText("");
+      }
+      if (s) {
+        setStrengthHelperText("Number must be between 0 and 100");
+      } else {
+        setStrengthHelperText("");
+      }
+      if (a || m || r || s) {
+        return false;
+      } else return true;
     }
-
-    const validateStats = ()=>{
-      if (magic && agility && strength && resistance && id) {
-        const a = agility>=100 || agility < 0;
-        const m = magic>=100 || magic < 0;
-        const r = resistance>=100 || resistance < 0;
-        const s = strength>=100 || strength < 0;
-      if(a){
-        setAgilityHelperText("Number must be between 0 and 100")
-      }else{
-        setAgilityHelperText("")
-      }
-      if(m){
-        setMagicHelperText("Number must be between 0 and 100")
-      }else{
-        setMagicHelperText("")
-      }
-      if(r){
-        setResistanceHelperText("Number must be between 0 and 100")
-      }else{
-        setResistanceHelperText("")
-      }
-      if(s){
-        setStrengthHelperText("Number must be between 0 and 100")
-      }else{
-        setStrengthHelperText("")
-      }
-      if(a || m || r || s){
-        return false
-      }
-      else return true
-    }
-    return false
-    }
+    return false;
+  };
 
   const handleSave = () => {
     if (magic && agility && strength && resistance && id) {
@@ -87,17 +87,15 @@ const CharacterForm = (props: IProps) => {
         API.addCharacter({
           name,
           thumbnail,
-          characterId:id,
+          characterId: id,
           stats: {
             agility,
             strength,
             magic,
             resistance,
           },
-        }).then(()=>
-          setOpenSnackBar(true)
-          );
-        }
+        }).then(() => setOpenSnackBar(true));
+      }
     }
   };
 
@@ -116,18 +114,40 @@ const CharacterForm = (props: IProps) => {
         <CardHeader title={name} subheader={id} />
         <CardContent>
           <Divider />
-          <form style={{ margin: 50 }} onSubmit={()=>handleSave()}>
+          <form style={{ margin: 50 }} onSubmit={() => handleSave()}>
             <Typography variant="h4">Stats</Typography>
             <List>
-            <StatsListItem key="agility" name="Agility" stat={agility} setStat={setAgility} statHelperText={agilityHelperText}  />
-            <StatsListItem key="magic" name="Magic" stat={magic} setStat={setMagic} statHelperText={magicHelperText}  />
-            <StatsListItem key="resistance" name="Resistance" stat={resistance} setStat={setResistance} statHelperText={resistanceHelperText}  />            
-            <StatsListItem key="strength" name="Strength" stat={strength} setStat={setStrength} statHelperText={strengthHelperText}  />
-            
-            
+              <StatsListItem
+                key="agility"
+                name="Agility"
+                stat={agility}
+                setStat={setAgility}
+                statHelperText={agilityHelperText}
+              />
+              <StatsListItem
+                key="magic"
+                name="Magic"
+                stat={magic}
+                setStat={setMagic}
+                statHelperText={magicHelperText}
+              />
+              <StatsListItem
+                key="resistance"
+                name="Resistance"
+                stat={resistance}
+                setStat={setResistance}
+                statHelperText={resistanceHelperText}
+              />
+              <StatsListItem
+                key="strength"
+                name="Strength"
+                stat={strength}
+                setStat={setStrength}
+                statHelperText={strengthHelperText}
+              />
             </List>
             <Button
-              onClick={()=>handleSave()}
+              onClick={() => handleSave()}
               fullWidth
               color="secondary"
               size="large"
@@ -136,11 +156,18 @@ const CharacterForm = (props: IProps) => {
               Save
             </Button>
           </form>
-
         </CardContent>
       </Card>
-      <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleCloseSnackBar}>
-        <Alert onClose={handleCloseSnackBar} severity="success" variant="filled">
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackBar}
+      >
+        <Alert
+          onClose={handleCloseSnackBar}
+          severity="success"
+          variant="filled"
+        >
           Succesfully updated stats!
         </Alert>
       </Snackbar>
@@ -158,7 +185,7 @@ type IProps = {
 export type ICharacterInfo = {
   name: string;
   characterId: number;
-  thumbnail:string,
+  thumbnail: string;
   stats: {
     agility: number;
     magic: number;

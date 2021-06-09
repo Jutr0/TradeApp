@@ -39,16 +39,27 @@ export default class API {
     return apiResponse?.data;
   };
 
-  static addCharacter = async(character:ICharacterInfo) =>{
-    await axios.post('http://localhost:3001/api/characters',character)
-      .catch(e=>console.error(e))
-  }
-  static getCharacter = async (id:number)=>{
-    const character:ICharacterInfo | undefined= await axios.get('http://localhost:3001/api/characters/'+id)
-      .then((res:{data:ICharacterInfo})=>res.data)
-      .catch(e=>{console.error(e); return undefined})
+  static addCharacter = async (character: ICharacterInfo) => {
+    await axios
+      .post("http://geng.wtf:3001/api/characters", character)
+      .catch((e) => console.error(e));
+  };
+  static getCharacter = async (id: number) => {
+    const character: ICharacterInfo | undefined = await axios
+      .get("http://geng.wtf:3001/api/characters/" + id)
+      .then((res: { data: ICharacterInfo }) => res.data)
+      .catch((e) => {
+        console.error(e);
+        return undefined;
+      });
 
     return character;
+  };
 
-  }
+
+  // static isUser = async (val:any)=>{
+  //   const user:IUser | undefined = await axios
+  //   .get("http://geng.wtd:3001/api/users/"+)
+  // }
+
 }

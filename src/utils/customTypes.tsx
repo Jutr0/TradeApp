@@ -59,3 +59,10 @@ export type IImgModal = {
   image: string;
   open: boolean;
 };
+
+export type IUser = {
+  name: string;
+  avatar: string;
+  email: string;
+  _id: string;
+};
