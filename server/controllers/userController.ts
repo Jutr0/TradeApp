@@ -59,5 +59,5 @@ export const findUser = async (
   const name = req.query.name as string;
   const user = await User.findOne({name:name}).lean().exec()
   
-  return user
+  res.send(user)
 }
