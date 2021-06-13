@@ -8,5 +8,5 @@ export const UserContext = createContext<IUserContext>({
 
 export type IUserContext = {
   user: IUser | null;
-  setUser: (val: IUser) => void;
+  setUser: (val: IUser | null) => void;
 };

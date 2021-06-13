@@ -75,7 +75,6 @@ export default class API {
   };
 
 
-  //TODO it's not executing :<<
   static findUser = async (name: string) => {
     const user: IUser = await axios
       .get("http://localhost:3001/api/users/find", { params: { name } })
