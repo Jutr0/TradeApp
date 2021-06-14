@@ -100,7 +100,8 @@ const RegisterForm = (props: IRegister) => {
           setUsernameHelperText("This username or email is already in use");
         } else if (res !== undefined) {
           API.addUser({ name: username, email, password }).then((res) =>
-            setUser(res)
+            {setUser(res)
+            setDialog({...dialog,open:false})}
           );
         }
       });

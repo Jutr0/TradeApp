@@ -41,12 +41,12 @@ export default class API {
 
   static addCharacter = async (character: ICharacterInfo) => {
     await axios
-      .post("http://localhost:3001/api/characters", character)
+      .post("http://192.168.8.110:3001/api/characters", character)
       .catch((e) => console.error(e));
   };
   static getCharacter = async (id: number) => {
     const character: ICharacterInfo | undefined = await axios
-      .get("http://localhost:3001/api/characters/" + id)
+      .get("http://192.168.8.110:3001/api/characters/" + id)
       .then((res: { data: ICharacterInfo }) => res.data)
       .catch((e) => {
         console.error(e);
@@ -58,7 +58,7 @@ export default class API {
 
   static isUser = async (name: string, email?: string, password?: string) => {
     const user: boolean = await axios
-      .get("http://localhost:3001/api/users/is", {
+      .get("http://192.168.8.110:3001/api/users/is", {
         params: { name, email, password },
       })
       .then((res) => res.data.isUser)
@@ -68,17 +68,19 @@ export default class API {
 
   static addUser = async (user: IUser) => {
     const currentUser: IUser = await axios
-      .post("http://localhost:3001/api/users/", user)
+      .post("http://192.168.8.110:3001/api/users/", user)
       .then((res) => res.data)
       .catch((e) => console.error(e));
     return currentUser;
   };
 
-
   static findUser = async (name: string) => {
     const user: IUser = await axios
-      .get("http://localhost:3001/api/users/find", { params: { name } })
-      .then((res) => {console.log(res);return res.data })
+      .get("http://192.168.8.110:3001/api/users/find", { params: { name } })
+      .then((res) => {
+        console.log(res);
+        return res.data;
+      })
       .catch((e) => console.log(e));
 
     return user;

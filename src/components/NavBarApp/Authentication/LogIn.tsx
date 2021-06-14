@@ -67,12 +67,12 @@ const LogInForm = (props: ILogIn) => {
 
     if (logIn) {
       API.isUser(username, undefined, password).then((res) => {
-          if (res) {
-              
-              API.findUser(username).then((res) => {
-              console.log(res)
-              setUsernameHelperText("");
-              setUser(res);
+        if (res) {
+          API.findUser(username).then((res) => {
+            console.log(res);
+            setUsernameHelperText("");
+            setUser(res);
+            setDialog({...dialog,open:false})
           });
         } else if (res !== undefined) {
           setUsernameHelperText("Wrong username or password");

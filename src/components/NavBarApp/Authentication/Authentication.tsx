@@ -16,7 +16,10 @@ const Authentication = () => {
   return (
     <>
       {user ? (
-        <LogOut />
+        <LogOut
+          setDialog={(val: IAuthenticationDialog) => setDialog(val)}
+          dialog={dialog}
+        />
       ) : (
         <div
           style={{
