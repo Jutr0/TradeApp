@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/TradeApp/static/css/main.b1bee403.chunk.css",
+    "main.js": "/TradeApp/static/js/main.156b8a54.chunk.js",
+    "main.js.map": "/TradeApp/static/js/main.156b8a54.chunk.js.map",
+    "runtime-main.js": "/TradeApp/static/js/runtime-main.3618a5c1.js",
+    "runtime-main.js.map": "/TradeApp/static/js/runtime-main.3618a5c1.js.map",
+    "static/js/2.1331597e.chunk.js": "/TradeApp/static/js/2.1331597e.chunk.js",
+    "static/js/2.1331597e.chunk.js.map": "/TradeApp/static/js/2.1331597e.chunk.js.map",
+    "index.html": "/TradeApp/index.html",
+    "static/css/main.b1bee403.chunk.css.map": "/TradeApp/static/css/main.b1bee403.chunk.css.map",
+    "static/js/2.1331597e.chunk.js.LICENSE.txt": "/TradeApp/static/js/2.1331597e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3618a5c1.js",
+    "static/js/2.1331597e.chunk.js",
+    "static/css/main.b1bee403.chunk.css",
+    "static/js/main.156b8a54.chunk.js"
+  ]
+}
